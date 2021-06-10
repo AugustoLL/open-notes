@@ -1,6 +1,6 @@
 <template>
-  <div class="container">
-    <TheDashboard/>
+  <div class="dashboard-container">
+    <TheDashboard class="dashboard"/>
   </div>
 </template>
 
@@ -14,3 +14,13 @@ export default {
   }
 }
 </script>
+
+<style lang="postcss" scoped>
+.dashboard-container {
+  @apply grid grid-cols-12;
+}
+.dashboard {
+  @apply col-start-2 col-span-10;
+  @apply lg:col-start-3 lg:col-span-8;
+}
+</style>

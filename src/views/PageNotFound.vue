@@ -1,25 +1,16 @@
 <template>
     <div class="container">
         <h1 class="title">Page not Found</h1>
-        <img 
-        class="image"
-        :alt="illustration.alt" 
-        src="@/assets/illustrations/page-not-found.svg"
-        >
+        <base-illustration
+            class="illustration"
+            name="pageNotFound"
+        ></base-illustration>
     </div>
 </template>
 
 <script>
 export default {
   name: 'PageNotFound',
-  data() {
-    return {
-        illustration: {
-            alt: 'Illustration of a lady sitting on top of the 0 of 404',
-            src: '@/assets/illustrations/page-not-found.svg'
-        }
-    };
-  },
 }
 </script>
 
@@ -30,11 +21,11 @@ export default {
 .title {
     @apply text-4xl md:text-6xl lg:text-8xl;
 }
-.image {
+.illustration {
     @apply w-5/6 md:w-3/6;
 }
 .title,
-.image {
+.illustration {
     @apply mx-auto my-10;
 }
 </style>
