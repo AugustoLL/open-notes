@@ -6,13 +6,35 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     user: {
-      username: null,
-      password: null,
+      username: 'UsernameTest', //null
+      password: 'PasswordTest', //null
     },
-    notes: []
+    notes: [
+      {
+        id: 0,
+        title: 'My First Note!',
+        body: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia voluptates qui blanditiis iure hic explicabo aperiam eum excepturi sit possimus ipsa, laborum aspernatur perspiciatis quisquam saepe soluta. Aspernatur, eaque ducimus.',
+      },
+      {
+        id: 2,
+        title: 'My Second Note!',
+        body: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia voluptates qui blanditiis iure hic explicabo aperiam eum excepturi sit possimus ipsa, laborum aspernatur perspiciatis quisquam saepe soluta. Aspernatur, eaque ducimus.',
+      },
+      {
+        id: 3,
+        title: 'My Third Note!',
+        body: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia voluptates qui blanditiis iure hic explicabo aperiam eum excepturi sit possimus ipsa, laborum aspernatur perspiciatis quisquam saepe soluta. Aspernatur, eaque ducimus.',
+      },
+      {
+        id: 4,
+        title: 'My Fourth Note!',
+        body: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia voluptates qui blanditiis iure hic explicabo aperiam eum excepturi sit possimus ipsa, laborum aspernatur perspiciatis quisquam saepe soluta. Aspernatur, eaque ducimus.',
+      }
+    ]
   },
   getters: {
-    notesCount: (state) => state.posts.length,
+    notesCount: (state) => state.notes.length,
+    notes: (state) => state.notes,
   },
   // Always synchronous,
   // is allowed to change the state directly,
@@ -25,6 +47,11 @@ export default new Vuex.Store({
       const index = state.notes.indexOf(note)
       if (index > -1)
         state.notes.splice(index, 1)
+    },
+    UPDATE_NOTE(state, note) {
+      const index = state.notes.indexOf(note)
+      if (index > -1)
+        state.notes.splice(index, 1, note)
     }
   },
   // Can be synchronous or asynchronous,
@@ -32,7 +59,7 @@ export default new Vuex.Store({
   actions: {
     async insertNote({commit}, payload) {
       try {
-        commit('INSERT_POST', payload)
+        commit('INSERT_NOTE', payload)
       } catch(error) {
         //
       }
@@ -40,6 +67,13 @@ export default new Vuex.Store({
     async removeNote({commit}, payload) {
       try {
         commit('REMOVE_NOTE', payload)
+      } catch(error) {
+        //
+      }
+    },
+    async updateNote({commit}, payload) {
+      try {
+        commit('UPDATE_NOTE', payload)
       } catch(error) {
         //
       }

@@ -10,7 +10,7 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home,
-    meta: { title: `${DEFAULT_TITLE} | Home` },
+    meta: { title: `${DEFAULT_TITLE}` },
   },
   {
     path: '/dashboard',
@@ -31,7 +31,7 @@ const routes = [
     path: '/:catchAll(.*)*',
     name: 'PageNotFound',
     component: () => import('@/views/PageNotFound.vue'),
-    meta: { title: `${DEFAULT_TITLE} | 404` },
+    meta: { title: `${DEFAULT_TITLE} | Page Not Found` },
   },
 ]
 

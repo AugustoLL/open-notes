@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="header-container">
         <div id="header">
           <router-link to="/">Home</router-link> |
           <router-link to="/dashboard">Dashboard</router-link> |
@@ -16,7 +16,7 @@ export default {
 
 <style lang="postcss" scoped>
 #header {
-  @apply p-10 bg-gray-800;
+  @apply p-10 bg-gray-800 grid grid-cols-12;
 }
 #header > a {
   @apply font-bold;

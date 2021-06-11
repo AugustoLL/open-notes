@@ -1,13 +1,15 @@
 <template>
   <div class="notes-container">
     <base-illustration
-      :class="['illustration', { isHidden: hidden }]"
+      v-if="notesCount <= 0"
+      :class="['illustration']"
       name="takingNotes"
     ></base-illustration>
-    <base-note v-for="n in notes" :key="n"
-      :class="{ isHidden: !hidden }"
-      title="My First Note!"
-      body="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia voluptates qui blanditiis iure hic explicabo aperiam eum excepturi sit possimus ipsa, laborum aspernatur perspiciatis quisquam saepe soluta. Aspernatur, eaque ducimus."
+    <base-note
+      v-else
+      v-for="n in notes"
+      :key="n.id"
+      :note="n"
     ></base-note>
   </div>
 </template>
@@ -23,15 +25,23 @@ export default {
   data() {
     return {
       hidden: true,
-      notes: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      notes: [],
     }
   },
+  mounted() {
+    this.notes = this.$store.getters.notes
+  },
+  computed: {
+    notesCount() {
+      return this.$store.getters.notesCount
+    }
+  }
 }
 </script>
 
 <style lang="postcss" scoped>
 .notes-container {
-  @apply grid md:grid-cols-2 lg:grid-cols-4 gap-10 p-5;
+  @apply grid md:grid-cols-2 2xl:grid-cols-3 gap-10 p-5;
 }
 .illustration {
   @apply my-10 w-3/4 lg:w-2/4 xl:w-2/6 col-span-full row-span-full mx-auto;
