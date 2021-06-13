@@ -73,7 +73,7 @@ export default {
 }
 .title,
 .body {
-  @apply px-5 py-2 outline-none ring ring-2 border-blue-300 no-underline;
+  @apply px-5 py-2 outline-none ring-2 border-blue-300 no-underline;
 }
 .icon {
   @apply w-8 absolute p-2 right-0 cursor-pointer;
