@@ -14,4 +14,9 @@
   // color: #2c3e50;
   color: #119da4;
 }
+a {
+  text-decoration: none !important;
+  // outline: none !important;
+  color: #119da4;
+}
 </style>
