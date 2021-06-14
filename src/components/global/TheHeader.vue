@@ -53,7 +53,7 @@ export default {
 }
 .dropdown-container {
   @apply -left-32;
-  @apply origin-center opacity-0 bg-gray-200 absolute z-10 rounded grid gap-y-2;
+  @apply origin-center opacity-0 bg-gray-200 absolute z-50 rounded grid gap-y-2;
   @apply transition duration-100 ease-in-out;
 }
 .dropdown-container.show {

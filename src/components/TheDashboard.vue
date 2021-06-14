@@ -1,16 +1,22 @@
 <template>
-  <div class="notes-container">
-    <base-illustration
-      v-if="notesCount <= 0"
-      :class="['illustration']"
-      name="takingNotes"
-    ></base-illustration>
-    <base-note
-      v-else
-      v-for="n in notes"
-      :key="n.id"
-      :note="n"
-    ></base-note>
+  <div class="container">
+    <div class="add-note-container" @click="createNote">
+      <base-svg-icon name="addFile" class="add-note-icon"/>
+    </div>
+    
+    <div class="notes-container">
+      <base-illustration
+        v-if="notesCount <= 0"
+        :class="['illustration']"
+        name="takingNotes"
+      ></base-illustration>
+      <base-note
+        v-else
+        v-for="note in notes"
+        :key="note.id"
+        :note="note"
+      ></base-note>  
+    </div>
   </div>
 </template>
 
@@ -31,6 +37,15 @@ export default {
   mounted() {
     this.notes = this.$store.getters.notes
   },
+  methods: {
+    createNote() {
+      this.$store.dispatch('insertNote', {
+        id: this.notes.length,
+        title: 'New Note',
+        body: 'Edit your Note here!'
+      })
+    }
+  },
   computed: {
     notesCount() {
       return this.$store.getters.notesCount
@@ -48,5 +63,12 @@ export default {
 }
 .isHidden {
   @apply hidden;
+}
+.add-note-container {
+  @apply fixed z-10 right-24 bottom-0;
+  @apply bg-gray-900 p-3 rounded-full cursor-pointer;
+}
+.add-note-icon {
+  @apply w-14;
 }
 </style>
