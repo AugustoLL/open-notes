@@ -19,6 +19,8 @@ export default {
         'addFolder',
         'deleteBin',
         'home',
+        'sortAsc',
+        'sortDesc',
       ].indexOf(value) !== -1,
     },
     color: {
@@ -52,6 +54,14 @@ export default {
       home: {
         path:
           'M20 20a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-9H1l10.327-9.388a1 1 0 0 1 1.346 0L23 11h-3v9z',
+      },
+      sortAsc: {
+        path:
+          'M19 3l4 5h-3v12h-2V8h-3l4-5zm-5 15v2H3v-2h11zm0-7v2H3v-2h11zm-2-7v2H3V4h9z',
+      },
+      sortDesc: {
+        path:
+          'M20 4v12h3l-4 5-4-5h3V4h2zm-8 14v2H3v-2h9zm2-7v2H3v-2h11zm0-7v2H3V4h11z',
       },
     };
   },
