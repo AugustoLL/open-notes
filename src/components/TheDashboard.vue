@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <sub-header></sub-header>
     <div class="add-note-container" @click="createNote">
       <base-svg-icon name="addFile" class="add-note-icon"/>
     </div>
@@ -22,10 +23,12 @@
 
 <script>
 import BaseNote from '@/components/dashboard/BaseNote.vue'
+import SubHeader from './dashboard/SubHeader.vue'
 
 export default {
   components: {
     BaseNote,
+    SubHeader,
   },
   name: 'TheDashboard',
   data() {
