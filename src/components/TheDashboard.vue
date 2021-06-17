@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <sub-header></sub-header>
     <div class="add-note-container" @click="createNote">
       <base-svg-icon name="addFile" class="add-note-icon"/>
     </div>
@@ -22,10 +23,12 @@
 
 <script>
 import BaseNote from '@/components/dashboard/BaseNote.vue'
+import SubHeader from './dashboard/SubHeader.vue'
 
 export default {
   components: {
     BaseNote,
+    SubHeader,
   },
   name: 'TheDashboard',
   data() {
@@ -42,13 +45,18 @@ export default {
       this.$store.dispatch('insertNote', {
         id: this.notes.length,
         title: 'New Note',
-        body: 'Edit your Note here!'
+        body: 'Edit your Note here!',
+        dateCreated: this.getCurrentDate,
+        dateModified: null,
       })
     }
   },
   computed: {
     notesCount() {
       return this.$store.getters.notesCount
+    },
+    getCurrentDate() {
+      return new Date()
     }
   }
 }
@@ -65,7 +73,7 @@ export default {
   @apply hidden;
 }
 .add-note-container {
-  @apply fixed z-10 right-24 bottom-0;
+  @apply fixed z-10 right-24 bottom-5;
   @apply bg-gray-900 p-3 rounded-full cursor-pointer;
 }
 .add-note-icon {
