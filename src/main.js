@@ -8,6 +8,7 @@ import BaseIllustration from '@/components/global/BaseIllustration.vue'
 import store from './store'
 
 Vue.config.productionTip = false
+Vue.config.devtools = true
 
 Vue.component('TheHeader', TheHeader)
 Vue.component('base-svg-icon', BaseSVGIcon)

@@ -1,60 +1,40 @@
 <template>
     <div class="container">
-        <div class="item">
-            <div @click="changeSortingType" class="sort-icon">
-                <base-svg-icon :name="sortingType" color="#6a7280" />
-            </div>
-            <span class="sort-text">sort by name</span>
-        </div>
-        <div class="item">
-            <div @click="changeSortingType" class="sort-icon">
-                <base-svg-icon :name="sortingType" color="#6a7280" />
-            </div>
-            <span class="sort-text">sort by name</span>
-        </div>
-        <div class="item">
-            <div @click="changeSortingType" class="sort-icon">
-                <base-svg-icon :name="sortingType" color="#6a7280" />
-            </div>
-            <span class="sort-text">sort by name</span>
-        </div>
+        <BaseSort class="item" id="sortItem"/>
+        <BaseSearchbar class="item" id="searchbarItem"/>
     </div>
 </template>
 
 <script>
+import BaseSearchbar from '@/components/dashboard/BaseHeaderSearchbar.vue'
+import BaseSort from '@/components/dashboard/BaseHeaderSort.vue'
+
 export default {
+    components: {
+        BaseSearchbar,
+        BaseSort,
+    },
     data() {
         return {
-            sortingType: "sortAsc",
+            
         }
     },
     methods: {
-        changeSortingType() {
-            if (this.sortingType === 'sortAsc')
-                this.sortingType = 'sortDesc'
-            else 
-                this.sortingType = 'sortAsc'
-            return this.sortingType
-        },
     }
 }
 </script>
 
 <style lang="postcss" scoped>
 .container {
-    @apply grid bg-gray-700 h-10 rounded-b;
+    @apply grid bg-gray-700 h-10 rounded-b grid-cols-12;
 }
 .item {
-    @apply grid row-start-1;
+    @apply grid row-start-1 self-center;
 }
-.sort-icon {
-    @apply w-8 mx-auto cursor-pointer;
+#sortItem {
+    @apply col-span-3 md:col-span-2 col-start-2 md:col-start-2;
 }
-.sort-icon,
-.sort-text {
-    @apply row-start-1 self-center;
-}
-.sort-text {
-    @apply text-gray-400;
+#searchbarItem {
+    @apply col-span-7 col-end-12;
 }
 </style>
