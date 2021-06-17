@@ -12,11 +12,18 @@
         name="takingNotes"
       ></base-illustration>
       <base-note
-        v-else
+        v-else-if="!getSearchQuery"
         v-for="note in notes"
         :key="note.id"
         :note="note"
-      ></base-note>  
+      ></base-note>
+      <base-note
+        v-else
+        v-show="getSearchQuery"
+        v-for="note in filterNotes"
+        :key="note.title"
+        :note="note"
+      ></base-note>    
     </div>
   </div>
 </template>
@@ -43,21 +50,43 @@ export default {
   methods: {
     createNote() {
       this.$store.dispatch('insertNote', {
-        id: this.notes.length,
+        id: this.getNewID,
         title: 'New Note',
         body: 'Edit your Note here!',
         dateCreated: this.getCurrentDate,
         dateModified: null,
       })
-    }
+    },
+    removeDiacritics(str) {
+      return str
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase()
+    },
   },
   computed: {
     notesCount() {
       return this.$store.getters.notesCount
     },
+    getNewID() {
+      return this.notesCount > 0 ? this.notes[this.notes.length - 1].id + 1 : 0
+    },
     getCurrentDate() {
       return new Date()
-    }
+    },
+    getSearchQuery() {
+      return this.$store.getters.searchQuery
+    },
+    filterNotes() {
+      const query = this.removeDiacritics(this.getSearchQuery)
+      const filtered = this.notes.filter((note) => {
+        return (
+                this.removeDiacritics(note.title).includes(query) ||
+                this.removeDiacritics(note.body).includes(query)
+        )
+      });
+      return filtered
+    },
   }
 }
 </script>
