@@ -42,11 +42,22 @@ export default {
       state.notes.push(note)
     },
     REMOVE_NOTE(state, note) {
-      state.notes.splice(note.id, 1)
+      let index
+      state.notes.forEach(element => {
+        if (element.id === note.id)
+          index = state.notes.indexOf(element)
+      })
+      state.notes.splice(index, 1)
     },
     UPDATE_NOTE(state, note) {
-      state.notes[note.id].title = note.title
-      state.notes[note.id].body = note.body
+      let index
+      state.notes.forEach(element => {
+        if (element.id === note.id)
+          index = state.notes.indexOf(element)
+      })
+      state.notes[index].title = note.title
+      state.notes[index].body = note.body
+      state.notes[index].dateModified = note.dateModified
     },
     UPDATE_SEARCH_QUERY(state, query) {
       state.searchQuery = query
