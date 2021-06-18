@@ -21,7 +21,7 @@
         v-else
         v-show="getSearchQuery"
         v-for="note in filterNotes"
-        :key="note.title"
+        :key="note.id"
         :note="note"
       ></base-note>    
     </div>
@@ -63,6 +63,29 @@ export default {
         .replace(/[\u0300-\u036f]/g, '')
         .toLowerCase()
     },
+    // filterNotes() {
+    //   const query = this.removeDiacritics(this.getSearchQuery)
+    //   const filtered = this.notes.filter((note) => {
+    //     return (
+    //             this.removeDiacritics(note.title).includes(query) ||
+    //             this.removeDiacritics(note.body).includes(query)
+    //     )
+    //   });
+    //   this.filteredNotes = filtered
+    // },
+    sortNotes(notes) {
+      notes.sort((n1, n2) => {
+        let t1, t2
+        t1 = this.removeDiacritics(n1.title.toLowerCase())
+        t2 = this.removeDiacritics(n2.title.toLowerCase())
+        if (t1 < t2)
+          return -1
+        else if (t1 > t2)
+          return 1
+        else 
+          return 0
+      })
+    },
   },
   computed: {
     notesCount() {
@@ -84,8 +107,19 @@ export default {
                 this.removeDiacritics(note.title).includes(query) ||
                 this.removeDiacritics(note.body).includes(query)
         )
-      });
+      })
       return filtered
+    },
+    // sortNotes(notes) {
+    //   return notes.sort((a, b) => {
+    //     return
+    //   })
+    // },
+    sortingType() {
+      return this.$store.getters.sortingType
+    },
+    sortingMethod() {
+      return this.$store.getters.sortingMethod
     },
   }
 }

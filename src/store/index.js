@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import NotesModule from './modules/NotesModule'
 import UserModule from './modules/UserModule'
+import SortingModule from './modules/SortingModule'
 
 Vue.use(Vuex)
 
@@ -17,6 +18,7 @@ export default new Vuex.Store({
   actions: {},
   modules: {
     user: UserModule,
-    notes: NotesModule
+    notes: NotesModule,
+    sort: SortingModule,
   }
 })
