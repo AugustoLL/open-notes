@@ -1,13 +1,13 @@
 export default {
   state: {
-    user: {
+    account: {
       username: 'UsernameTest', //null
       password: 'PasswordTest', //null
     },
   },
   getters: {
-    user: (state) => state.user,
-    username: (state) => state.user.username,
+    user: (state) => state.account,
+    username: (state) => state.account.username,
   },
   mutations: {},
   actions: {},

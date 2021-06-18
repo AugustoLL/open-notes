@@ -30,12 +30,10 @@ export default {
         dateCreated: new Date(),
       }
     ],
-    searchQuery: '',
   },
   getters: {
     notesCount: (state) => state.notes.length,
     notes: (state) => state.notes,
-    searchQuery: (state) => state.searchQuery,
   },
   mutations: {
     INSERT_NOTE(state, note) {
@@ -59,9 +57,6 @@ export default {
       state.notes[index].body = note.body
       state.notes[index].dateModified = note.dateModified
     },
-    UPDATE_SEARCH_QUERY(state, query) {
-      state.searchQuery = query
-    }
   },
   actions: {
     async insertNote({commit}, payload) {
@@ -85,11 +80,5 @@ export default {
         //
       }
     },
-    updateSearchQuery({commit}, payload) {
-      if(payload != '' && payload != null)
-        commit('UPDATE_SEARCH_QUERY', payload)
-      else 
-      commit('UPDATE_SEARCH_QUERY', '')
-    }
   },
 }
